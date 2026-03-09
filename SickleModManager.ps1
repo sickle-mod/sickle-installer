@@ -199,6 +199,25 @@ $uninstallBtn.Add_Click({
 
 $form.Controls.Add($uninstallBtn)
 
+# --- VIEW LOGS BUTTON ------------------------------------------------------
+
+$logsBtn = New-Object System.Windows.Forms.Button
+$logsBtn.Text = "Open Logs Folder"
+$logsBtn.Size = New-Object System.Drawing.Size(150,40)
+$logsBtn.Location = New-Object System.Drawing.Point(200,90)
+
+$logsBtn.Add_Click({
+    $LogDir = "$env:LOCALAPPDATA\SickleMod\logs"
+
+    if (!(Test-Path $LogDir)) {
+        New-Item -ItemType Directory -Path $LogDir | Out-Null
+    }
+
+    Start-Process explorer.exe $LogDir
+})
+
+$form.Controls.Add($logsBtn)
+
 # --- INITIAL VERSION CHECK -------------------------------------------------
 
 $form.Add_Shown({
@@ -214,3 +233,4 @@ $form.Topmost = $true
 $form.Add_Shown({ $form.Activate() })
 
 [void]$form.ShowDialog()
+
