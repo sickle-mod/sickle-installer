@@ -49,17 +49,16 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-:: Create desktop shortcut
-set SHORTCUT=%USERPROFILE%\Desktop\Sickle Mod Manager.lnk
-
 echo Creating desktop shortcut...
 
 powershell -NoLogo -NoProfile -Command ^
-    "$W = New-Object -ComObject WScript.Shell; " ^
-    "$S = $W.CreateShortcut('%SHORTCUT%'); " ^
-    "$S.TargetPath = '%TARGET%\SickleModManager.bat'; " ^
-    "$S.WorkingDirectory = '%TARGET%'; " ^
-    "if (Test-Path '%ICON_FILE%') { $S.IconLocation = '%ICON_FILE%' } " ^
+    "$desktop = [Environment]::GetFolderPath('Desktop');" ^
+    "$shortcutPath = Join-Path $desktop 'Sickle Mod Manager.lnk';" ^
+    "$W = New-Object -ComObject WScript.Shell;" ^
+    "$S = $W.CreateShortcut($shortcutPath);" ^
+    "$S.TargetPath = '%TARGET%\SickleModManager.bat';" ^
+    "$S.WorkingDirectory = '%TARGET%';" ^
+    "if (Test-Path '%ICON_FILE%') { $S.IconLocation = '%ICON_FILE%' }" ^
     "$S.Save()"
 
 echo Running SickleModManager.ps1...
