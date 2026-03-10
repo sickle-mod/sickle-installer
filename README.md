@@ -18,3 +18,14 @@
 1. Launch the SMM
 2. click Open Logs Folder
 3. Logs can be easily sorted by time.
+
+# Alternate installer
+There is another installer: https://github.com/sickle-mod/sickle-installer/blob/main/SickleInstaller.exe
+It functions the same way but may have more 
+
+# Manual install
+Steam default: "C:\Program Files (x86)\Steam\steamapps\common\Scythe Digital Edition\Scythe_Data\Managed"
+GOG default: "C:\Program Files (x86)\GOG Galaxy\Games\Scythe Digital Edition\Scythe_Data\Managed"
+1. Back up your original file (rename works fine)
+2. Download the modded game file from here: https://github.com/sickle-mod/sickle/blob/main/Assembly-CSharp.dll
+3. Save the modded file to the game location
